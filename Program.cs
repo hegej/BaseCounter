@@ -6,18 +6,27 @@ class BinaryCounter
 {
     static void Main()
     {
-        int countToBase = 128;
+        Console.Clear();
+        Console.WriteLine("Do you like Rainbows? (Y/N)");
+        ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-        var table = new Table { Border = TableBorder.Rounded };
-        table.AddColumn("Counter");
-        table.AddColumn("Count");
-        table.AddColumn("Value");
+        bool drawRainbow = (keyInfo.Key == ConsoleKey.Y);
+
+        int countToBase = 128;
 
         for (int i = 0; i <= countToBase; i++)
         {
             Console.Clear(); // Clear the console screen
 
-            table.Rows.Clear(); // Clear the rows from the previous iteration
+            if (drawRainbow)
+            {
+                DrawRainbow(i); // Draw the rainbow effect
+            }
+
+            var table = new Table { Border = TableBorder.Rounded };
+            table.AddColumn("Counter");
+            table.AddColumn("Count");
+            table.AddColumn("Value");
 
             string binary = Convert.ToString(i, 2).ToUpper(); // Capitalize base 2 representation
             string base10 = i.ToString();
@@ -31,10 +40,46 @@ class BinaryCounter
             table.AddRow("BASE32", i.ToString(), base32);
             table.AddRow("BASE64", i.ToString(), base64);
 
+            Console.WriteLine();
             AnsiConsole.Render(table);
+
+            if (drawRainbow)
+            {
+                DrawRainbow(i); // Draw the rainbow effect
+            }
 
             Thread.Sleep(500);
         }
+    }
+
+    static void DrawRainbow(int index)
+    {
+        int width = 27;
+        int colorCount = 7; // Number of colors in the rainbow
+
+        for (int i = 0; i < width; i++)
+        {
+            int colorIndex = (index + i) % colorCount;
+            ConsoleColor color = GetRainbowConsoleColor(colorIndex);
+            Console.BackgroundColor = color;
+            Console.Write(" ");
+        }
+
+        Console.ResetColor();
+    }
+
+    static ConsoleColor GetRainbowConsoleColor(int index)
+    {
+        return index switch
+        {
+            0 => ConsoleColor.Red,
+            1 => ConsoleColor.DarkYellow,
+            2 => ConsoleColor.Yellow,
+            3 => ConsoleColor.Green,
+            4 => ConsoleColor.Blue,
+            5 => ConsoleColor.DarkMagenta,
+            _ => ConsoleColor.Magenta
+        };
     }
 
     static string ConvertToBase32(int number)
