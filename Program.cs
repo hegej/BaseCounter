@@ -1,36 +1,37 @@
 ﻿using System;
 using System.Threading;
+using Spectre.Console;
 
 class BinaryCounter
 {
     static void Main()
     {
-        int countToBase = 64;
+        int countToBase = 128;
+
+        var table = new Table { Border = TableBorder.Rounded };
+        table.AddColumn("Counter");
+        table.AddColumn("Count");
+        table.AddColumn("Value");
 
         for (int i = 0; i <= countToBase; i++)
         {
             Console.Clear(); // Clear the console screen
+
+            table.Rows.Clear(); // Clear the rows from the previous iteration
+
             string binary = Convert.ToString(i, 2).ToUpper(); // Capitalize base 2 representation
-            Console.WriteLine($"BASE2  | {i} | {binary}");
-            Console.WriteLine($"BASE10 | {i} | {i}");
+            string base10 = i.ToString();
+            string base16 = Convert.ToString(i, 16).ToUpper();
+            string base32 = ConvertToBase32(i).ToUpper();
+            string base64 = ConvertToBase64(i).ToUpper();
 
-            if (i <= countToBase)
-            {
-                string binaryBase16 = Convert.ToString(i, 16).ToUpper(); // Capitalize base 16 representation
-                Console.WriteLine($"BASE16 | {i} | {binaryBase16}");
-            }
+            table.AddRow("BASE2", i.ToString(), binary);
+            table.AddRow("BASE10", i.ToString(), base10);
+            table.AddRow("BASE16", i.ToString(), base16);
+            table.AddRow("BASE32", i.ToString(), base32);
+            table.AddRow("BASE64", i.ToString(), base64);
 
-            if (i <= countToBase)
-            {
-                string binaryBase32 = ConvertToBase32(i).ToUpper(); // Capitalize base 32 representation using custom conversion
-                Console.WriteLine($"BASE32 | {i} | {binaryBase32}");
-            }
-
-            if (i <= countToBase)
-            {
-                string binaryBase64 = ConvertToBase64(i).ToUpper(); // Capitalize base 64 representation using custom conversion
-                Console.WriteLine($"BASE64 | {i} | {binaryBase64}");
-            }
+            AnsiConsole.Render(table);
 
             Thread.Sleep(500);
         }

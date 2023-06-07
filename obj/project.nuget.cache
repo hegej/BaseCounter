@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "LKI/D+jfzvxXvj1kHdHSzIebe+lYBIbC9jZlM3sYzOGs1tQ52sRGS2cVRoHKDAGhrFhZD3/BzDIi0ZntZSe5Og==",
+  "dgSpecHash": "uT2fRUB1VCIBU0wgVEPXfZIQ0GABtBT3MOW73OApgKQxbm225dnMwIA3CIA6drZwvzHEJs389zuESHRtS6sLrg==",
   "success": true,
   "projectFilePath": "C:\\dev\\BaseCounter\\BaseCounter.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Glennwiz\\.nuget\\packages\\spectre.console\\0.47.0\\spectre.console.0.47.0.nupkg.sha512",
+    "C:\\Users\\Glennwiz\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
   "logs": []
 }

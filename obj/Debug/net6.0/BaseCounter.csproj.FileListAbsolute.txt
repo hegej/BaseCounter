@@ -14,3 +14,5 @@ C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.pdb
 C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.genruntimeconfig.cache
 C:\dev\BaseCounter\obj\Debug\net6.0\ref\BaseCounter.dll
 C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.sourcelink.json
+C:\dev\BaseCounter\bin\Debug\net6.0\Spectre.Console.dll
+C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.csproj.CopyComplete
