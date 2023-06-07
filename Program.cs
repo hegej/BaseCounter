@@ -7,20 +7,20 @@ class BinaryCounter
     static void Main()
     {
         Console.Clear();
-        Console.WriteLine("Do you like Rainbows? (Y/N)");
+        Console.WriteLine("Do you like Spells? (Y/N)");
         ConsoleKeyInfo keyInfo = Console.ReadKey();
 
-        bool drawRainbow = (keyInfo.Key == ConsoleKey.Y);
+        bool drawSpell = (keyInfo.Key == ConsoleKey.Y);
 
         int countToBase = 128;
 
         for (int i = 0; i <= countToBase; i++)
         {
-            Console.Clear(); // Clear the console screen
+            Console.Clear();
 
-            if (drawRainbow)
+            if (drawSpell)
             {
-                DrawRainbow(i); // Draw the rainbow effect
+                DrawPulsatingSpell(i);
             }
 
             var table = new Table { Border = TableBorder.Rounded };
@@ -28,7 +28,7 @@ class BinaryCounter
             table.AddColumn("Count");
             table.AddColumn("Value");
 
-            string binary = Convert.ToString(i, 2).ToUpper(); // Capitalize base 2 representation
+            string binary = Convert.ToString(i, 2).ToUpper();
             string base10 = i.ToString();
             string base16 = Convert.ToString(i, 16).ToUpper();
             string base32 = ConvertToBase32(i).ToUpper();
@@ -40,36 +40,42 @@ class BinaryCounter
             table.AddRow("BASE32", i.ToString(), base32);
             table.AddRow("BASE64", i.ToString(), base64);
 
-            Console.WriteLine();
             AnsiConsole.Render(table);
 
-            if (drawRainbow)
+            if (drawSpell)
             {
-                DrawRainbow(i); // Draw the rainbow effect
+                DrawPulsatingSpell(i);
             }
 
+            Console.WriteLine(); 
             Thread.Sleep(500);
         }
     }
 
-    static void DrawRainbow(int index)
+    static void DrawPulsatingSpell(int index)
     {
         int width = 27;
-        int colorCount = 7; // Number of colors in the rainbow
+        int colorCount = 7;
+
+        double progress = Math.Sin(index * Math.PI / 32); 
 
         for (int i = 0; i < width; i++)
         {
             int colorIndex = (index + i) % colorCount;
-            ConsoleColor color = GetRainbowConsoleColor(colorIndex);
+            ConsoleColor color = GetSpellConsoleColor(colorIndex, progress);
             Console.BackgroundColor = color;
             Console.Write(" ");
         }
 
         Console.ResetColor();
+        Console.WriteLine();
     }
 
-    static ConsoleColor GetRainbowConsoleColor(int index)
+    static ConsoleColor GetSpellConsoleColor(int index, double progress)
     {
+        double intensity = Math.Max(0, Math.Sin(index * Math.PI / 32 + progress * Math.PI));
+        int alpha = (int)(intensity * 255);
+
         return index switch
         {
             0 => ConsoleColor.Red,
