@@ -13,3 +13,4 @@ C:\dev\BaseCounter\obj\Debug\net6.0\refint\BaseCounter.dll
 C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.pdb
 C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.genruntimeconfig.cache
 C:\dev\BaseCounter\obj\Debug\net6.0\ref\BaseCounter.dll
+C:\dev\BaseCounter\obj\Debug\net6.0\BaseCounter.sourcelink.json
